@@ -1,18 +1,53 @@
-version: '2'
+#docker-compose -f mongodb-expressui.yml up -d
+version: "3.7"
 
 services:
-  mongodb-dev-primary:
-    image: 'bitnami/mongodb:latest'
-    ports:
-      - "27017:27017"
-    volumes:
-      - ./mongodb_data:/bitnami
+  mongodb:
+    image: mongo:latest
+    restart: always
+    container_name: mongodb
     environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=pass12345
       - MONGODB_ADVERTISED_HOSTNAME=localhost
       - MONGODB_USERNAME=user1
       - MONGODB_PASSWORD=pass1
       - MONGODB_DATABASE=db1
       - MONGODB_REPLICA_SET_MODE=primary
-      - MONGODB_ROOT_PASSWORD=rootpass1
-      - MONGODB_REPLICA_SET_KEY=replicasetkey123
       - MONGODB_REPLICA_SET_NAME=rs1
+    volumes:
+      #local dir/files: docker dir/files
+      - $HOME/lijy1/database/mongo_db:/data/db
+      - $HOME/lijy1/database/backup:/backup
+    ports:
+      - "27017:27017"
+    networks:
+      - mongo
+    #echo 'db.runCommand("ping").ok' | mongo 10.10.10.60:27017/test --quiet
+
+  mongo-express:
+    image: mongo-express:1.0.0-alpha.4
+    container_name: mongo-express
+    restart: always
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=pass12345
+      - ME_CONFIG_BASICAUTH_USERNAME=root
+      - ME_CONFIG_BASICAUTH_PASSWORD=root
+      - ME_CONFIG_MONGODB_URL=mongodb://root:pass12345@mongo:27017/
+    volumes:
+      - $HOME/lijy1/database/mongo_db
+    ports:
+      - "8081:8081"
+    networks:
+      - mongo
+    # wget --quiet --tries=3 --spider http://admin:admin123@10.10.10.60:8081 || exit 1
+
+networks:
+  mongo: # docker-compose-files_mongo
+    driver: bridge
+# networks: -- To use above network services in other projects add this networks property
+#  docker-compose-files_mongo: -- {{directory_name}}_{{network_name}}
+#    external: true -- are you using external network?
