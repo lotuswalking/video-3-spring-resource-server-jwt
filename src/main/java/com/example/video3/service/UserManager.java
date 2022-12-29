@@ -27,7 +27,9 @@ public class UserManager implements UserDetailsManager {
 
     @Override
     public void updateUser(UserDetails user) {
-
+        UserDetails user1 = loadUserByUsername(user.getUsername());
+        ((User) user1).setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save((User) user1);
     }
 
     @Override

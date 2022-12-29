@@ -4,6 +4,7 @@ import com.example.video3.document.User;
 import com.example.video3.dto.LoginDTO;
 import com.example.video3.dto.SignupDTO;
 import com.example.video3.dto.TokenDTO;
+import com.example.video3.repository.UserRepository;
 import com.example.video3.security.TokenGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,11 +35,17 @@ public class AuthController {
     @Autowired
     @Qualifier("jwtRefreshTokenAuthProvider")
     JwtAuthenticationProvider refreshTokenAuthProvider;
+    @Autowired
+    UserRepository userRepository;
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody SignupDTO signupDTO) {
         User user = new User(signupDTO.getUsername(), signupDTO.getPassword());
-        userDetailsManager.createUser(user);
+        if (userRepository.existsByUsername(signupDTO.getUsername())) {
+            userDetailsManager.updateUser(user);
+        } else {
+            userDetailsManager.createUser(user);
+        }
 
         Authentication authentication = UsernamePasswordAuthenticationToken.authenticated(user, signupDTO.getPassword(), Collections.EMPTY_LIST);
 

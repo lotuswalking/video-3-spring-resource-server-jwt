@@ -1,0 +1,337 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "个人项目",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "oauth"
+    }
+  ],
+  "paths": {
+    "/api/auth/register": {
+      "post": {
+        "summary": "注册",
+        "x-apifox-folder": "oauth",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "oauth"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "username",
+                  "password"
+                ],
+                "x-apifox-ignore-properties": [],
+                "x-apifox-orders": [
+                  "username",
+                  "password"
+                ]
+              },
+              "example": {
+                "username": "admin",
+                "password": "password"
+              }
+            }
+          }
+        },
+        "responses": {
+          "500": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "integer"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "path": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "timestamp",
+                    "status",
+                    "error",
+                    "path"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "timestamp",
+                    "status",
+                    "error",
+                    "path"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "timestamp": "2022-12-29T09:13:17.546+00:00",
+                      "status": 500,
+                      "error": "Internal Server Error",
+                      "path": "/api/auth/register"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox'": "https://www.apifox.cn/web/project/2136047/apis/api-56556662-run"
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "summary": "登录",
+        "x-apifox-folder": "oauth",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "oauth"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "username",
+                  "password"
+                ],
+                "x-apifox-ignore-properties": [],
+                "x-apifox-orders": [
+                  "username",
+                  "password"
+                ]
+              },
+              "example": {
+                "username": "admin",
+                "password": "password"
+              }
+            }
+          }
+        },
+        "responses": {
+          "500": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "integer"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "path": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "timestamp",
+                    "status",
+                    "error",
+                    "path"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "timestamp",
+                    "status",
+                    "error",
+                    "path"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "timestamp": "2022-12-29T09:13:17.546+00:00",
+                      "status": 500,
+                      "error": "Internal Server Error",
+                      "path": "/api/auth/register"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox'": "https://www.apifox.cn/web/project/2136047/apis/api-56562437-run"
+      }
+    },
+    "/api/auth/token": {
+      "post": {
+        "summary": "凭据检查",
+        "x-apifox-folder": "oauth",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "oauth"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string"
+                  },
+                  "accessToken": {
+                    "type": "string"
+                  },
+                  "refreshToken": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "userId",
+                  "accessToken",
+                  "refreshToken"
+                ],
+                "x-apifox-orders": [
+                  "userId",
+                  "accessToken",
+                  "refreshToken"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "userId": "{{userId}}",
+                "accessToken": "{{accessToken}}",
+                "refreshToken": "{{refreshToken}}"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox'": "https://www.apifox.cn/web/project/2136047/apis/api-56562539-run"
+      }
+    },
+    "/api/users/userId": {
+      "get": {
+        "summary": "获取用户",
+        "x-apifox-folder": "oauth",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "oauth"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string"
+                  },
+                  "accessToken": {
+                    "type": "string"
+                  },
+                  "refreshToken": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "userId",
+                  "accessToken",
+                  "refreshToken"
+                ],
+                "x-apifox-orders": [
+                  "userId",
+                  "accessToken",
+                  "refreshToken"
+                ],
+                "x-apifox-ignore-properties": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-orders": [],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox'": "https://www.apifox.cn/web/project/2136047/apis/api-56566073-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "测试环境"
+    }
+  ]
+}

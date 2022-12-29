@@ -19,7 +19,7 @@ public class UserController {
     UserRepository userRepository;
 
     @GetMapping("/{id}")
-    @PreAuthorize("#user.id == #id")
+//    @PreAuthorize("#user.id == #id")
     public ResponseEntity user(@AuthenticationPrincipal User user, @PathVariable String id) {
         return ResponseEntity.ok(UserDTO.from(userRepository.findById(id).orElseThrow()));
     }

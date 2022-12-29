@@ -9,7 +9,7 @@ spring:
     active: dev
   data:
     mongodb:
-      uri: mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_HOST}:${MONGODB_PORT}/?authSource=${MONGODB_DB}&replicaSet=${MONGODB_RS}
+      uri: mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_HOST}:${MONGODB_PORT}
       database: ${MONGODB_DB}
 logging:
   level:
